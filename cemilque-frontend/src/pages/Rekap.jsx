@@ -4,7 +4,7 @@
 
   const Rekap = () => {
     return (
-      <div className="h-screen overflow-y-auto pl-7 pt-7 pr-7">
+      <div className="h-screen overflow-y-auto pl-7 pt-7 pr-7 pb-7">
         <div className="flex flex-col gap-5">
           <GrafikPenjualanProduk />
           <GrafikPenjualanMingguan />

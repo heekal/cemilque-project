@@ -9,15 +9,15 @@ const GrafikPenjualanProduk = () => {
 
   return (
     <div className="bg-white p-5 rounded-xl shadow">
-      <h2 className="text-xl font-semibold mb-4 text-gray-800">Grafik Penjualan Produk</h2>
+      <h2 className="text-xl font-semibold mb-4 text-gray-800">Produk Terjual Hari Ini:</h2>
       <ResponsiveContainer width="100%" height={300}>
-        <BarChart data={barData} barCategoryGap="20%">
+        <BarChart data={barData} barCategoryGap="15%">
           <CartesianGrid stroke="#eee" strokeDasharray="3 3" />
           <XAxis dataKey="name" tick={{ fontSize: 12 }} />
           <YAxis tick={{ fontSize: 12 }} />
-          <Tooltip contentStyle={{ backgroundColor: "#f9f9f9", borderRadius: 8 }} />
+          <Tooltip contentStyle={{ backgroundColor: "#f9f9f9", borderRadius: 0 }} />
           <Legend />
-          <Bar dataKey="jumlah" fill="#5CE65C" radius={[10, 10, 0, 0]}></Bar>
+          <Bar dataKey="jumlah" fill="#5CE65C" radius={[0, 0, 0, 0]}></Bar>
         </BarChart>
       </ResponsiveContainer>
     </div>

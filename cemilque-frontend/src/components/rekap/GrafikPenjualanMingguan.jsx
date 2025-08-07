@@ -30,7 +30,7 @@ const GrafikPenjualanMingguan = () => {
 
   return (
     <div className="bg-white p-6 border border-gray-200 rounded-2xl shadow-md mb-6">
-      <h2 className="text-xl font-semibold mb-4 text-gray-800">Total Penjualan per Hari</h2>
+      <h2 className="text-xl font-semibold mb-4 text-gray-800">Banyak Barang Terjual Minggu Ini</h2>
       <ResponsiveContainer width="100%" height={320}>
         <LineChart data={lineData} margin={{ top: 10, right: 30, left: 0, bottom: 5 }}>
           <CartesianGrid stroke="#e5e7eb" strokeDasharray="4 4" />
@@ -47,9 +47,9 @@ const GrafikPenjualanMingguan = () => {
               fontWeight: "500",
             }}
             itemStyle={{
-              color: "#5CE65C", // selaraskan dengan stroke
+              color: "BLUE", // selaraskan dengan stroke
             }}
-            cursor={{ stroke: "#d1fadf", strokeWidth: 2 }}
+            cursor={{ stroke: "", strokeWidth: 2 }}
           />
           <Legend
             wrapperStyle={{
@@ -61,9 +61,9 @@ const GrafikPenjualanMingguan = () => {
           <Line
             type="monotone"
             dataKey="total"
-            stroke="#5CE65C"
+            stroke="Blue"
             strokeWidth={3}
-            dot={{ r: 4, stroke: "#5CE65C", strokeWidth: 2, fill: "#ffffff" }}
+            dot={{ r: 4, stroke: "blue", strokeWidth: 2, fill: "#ffffff" }}
             activeDot={{ r: 6 }}
             animationDuration={500}
           />

@@ -74,6 +74,7 @@ const TableList = () => {
 
   return (
     <Card className="p-6 w-full overflow-x-auto">
+      <h1 className="font-bold text-3xl text-black pt-1 pl-2 pb-10">List Pesanan Minggu Ini</h1>
       {/* Filter & Search */}
       <div className="w-full max-w-screen-lg mx-auto mb-8 px-2">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -85,7 +86,7 @@ const TableList = () => {
             crossOrigin=""
           />
           <Select
-            label="Filter Hari"
+            label="Pilh Hari"
             value={selectedDay}
             onChange={(val) => setSelectedDay(val)}
             className="w-full"
