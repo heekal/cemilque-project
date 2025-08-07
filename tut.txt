@@ -1,0 +1,6 @@
+tutorial:
+
+ada edit? langsung push
+kalo udah push bilang
+
+kalau gw bilang ada edit, lu pull dulu baru edit
