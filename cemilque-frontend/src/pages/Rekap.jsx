@@ -1,14 +1,13 @@
   import TableList from "../components/rekap/Tabelist";
-  import Charts from "../components/rekap/Chart";
-  import LineChartHari from "../components/rekap/Line-chart";
+  import GrafikPenjualanProduk from "../components/rekap/GrafikPenjualanProduk";
+  import GrafikPenjualanMingguan from "../components/rekap/GrafikPenjualanMingguan";
 
   const Rekap = () => {
-
     return (
-      <div className="h-screen overflow-auto">
+      <div className="h-screen overflow-y-auto pl-7 pt-7 pr-7">
         <div className="flex flex-col gap-5">
-          <Charts />
-          <LineChartHari />
+          <GrafikPenjualanProduk />
+          <GrafikPenjualanMingguan />
           <TableList />
         </div>
       </div>

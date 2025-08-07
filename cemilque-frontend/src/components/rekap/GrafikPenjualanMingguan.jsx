@@ -13,7 +13,7 @@ import { format, parseISO } from "date-fns";
 import { id } from "date-fns/locale";
 import data from "./dataset";
 
-const LineChartHari = () => {
+const GrafikPenjualanMingguan = () => {
   const jumlahPerHari = {};
 
   data.forEach(item => {
@@ -73,4 +73,4 @@ const LineChartHari = () => {
   );
 };
 
-export default LineChartHari;
+export default GrafikPenjualanMingguan;

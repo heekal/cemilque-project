@@ -1,17 +1,7 @@
-import {
-  BarChart,
-  Bar,
-  XAxis,
-  YAxis,
-  Tooltip,
-  CartesianGrid,
-  ResponsiveContainer,
-  Legend,
-  LabelList,
-} from "recharts";
+import { BarChart, Bar, XAxis, YAxis, Tooltip, CartesianGrid, ResponsiveContainer, Legend, LabelList} from "recharts";
 import data from "./dataset";
 
-const BarChartProduk = () => {
+const GrafikPenjualanProduk = () => {
   const barData = data.map(item => ({
     name: item.Produk,
     jumlah: item.Jumlah,
@@ -34,4 +24,4 @@ const BarChartProduk = () => {
   );
 };
 
-export default BarChartProduk;
+export default GrafikPenjualanProduk;
