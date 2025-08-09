@@ -9,8 +9,8 @@ const GrafikPenjualanProduk = () => {
 
   return (
     <div className="bg-white p-5 rounded-xl shadow">
-      <h2 className="text-xl font-semibold mb-4 text-gray-800">Produk Terjual Hari Ini:</h2>
-      <ResponsiveContainer width="100%" height={300}>
+      <h2 className="text-xl font-semibold mb-4 text-gray-800"></h2>
+      <ResponsiveContainer width="100%" height={300} className="pr-10">
         <BarChart data={barData} barCategoryGap="15%">
           <CartesianGrid stroke="#eee" strokeDasharray="3 3" />
           <XAxis dataKey="name" tick={{ fontSize: 12 }} />
