@@ -31,7 +31,7 @@ export default function MenuMakanan() {
     try {
       if (editedMenu.menu_id) {
         // MODE EDIT
-        await axios.put(`${BASE_URL}/api/menus/update/${editedMenu.menu_id}`);
+        await axios.put(`${BASE_URL}/api/menus/update/${editedMenu.menu_id}`, editedMenu);
         const updatedData = data.map((item) =>
           item.menu_id === editedMenu.menu_id ? editedMenu : item
         );
@@ -96,10 +96,10 @@ export default function MenuMakanan() {
               </div>
 
               {/* Tabel */}
-              <div className="overflow-x-auto  h-[320px] overflow-y-auto rounded-md">
+              <div className="overflow-x-auto h-[320px] overflow-y-auto rounded-md">
                 <table className="w-full text-left border border-gray-200 ">
                   <thead>
-                    <tr className="bg-gray-100 text-gray-900 uppercase text-xs">
+                    <tr className="sticky top-0 bg-gray-100 text-gray-900 uppercase text-xs">
                       {["No", "Nama Menu", "Kategori", "Harga", "HPP"].map((head) => (
                         <th
                           key={head}

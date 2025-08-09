@@ -37,7 +37,7 @@ const groupByDay = (data) => {
   return sortedGrouped;
 };
 
-const TableList = () => {
+export default function TableList () {
   const dataHead = ["Produk", "Jumlah", "Harga", "Tanggal", ""];
   const [search, setSearch] = useState("");
   const [selectedDay, setSelectedDay] = useState("Semua");
@@ -82,8 +82,7 @@ const TableList = () => {
             onChange={(val) => setSelectedDay(val)}
             className="w-full"
           >
-            <Option value="Semua">{selectedDay}</Option>
-            {["Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu", "Minggu"].map(
+            {["Semua", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu", "Minggu"].map(
               (day) => (
                 <Option key={day} value={day}>
                   {day}
@@ -150,4 +149,3 @@ const TableList = () => {
   );
 };
 
-export default TableList;

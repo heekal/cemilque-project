@@ -86,17 +86,10 @@ export function NavigasiTujuan({ icon, text, path, alert, onClick }) {
       >
       {text}
       </span>
-      {alert && (
-        <div
-          className={`absolute right-2 w-2 h-2 rounded bg-indigo-400  ${
-            expanded ? "" : "top-2"
-          }`}
-        ></div>
-      )}
 
       {!expanded && (
         <div
-          className={`absolute left-full rounded-md px-2 py-1 ml-2
+          className={`absolute left-full rounded-md px-2 py-1 ml-2 z-[9999]
             bg-indigo-100 text-indigo-800 text-sm invisible opacity-20
             -translate-x-3 transition-all group-hover:visible 
             group-hover:opacity-100 group-hover:translate-x-0`}

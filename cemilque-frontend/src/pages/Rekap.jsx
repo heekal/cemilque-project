@@ -4,7 +4,7 @@ import GrafikPenjualanMingguan from "../components/rekap/GrafikPenjualanMingguan
 
 export default function Rekap () {
   return (
-    <div className="h-screen overflow-y-auto pl-7 pt-7 pr-7 pb-7">
+    <div className="flex flex-col h-screen overflow-y-auto pl-7 pt-7 pr-7 pb-7">
       <h1 className="font-bold text-4xl pb-5">Terjual Hari Ini:</h1>
       <div className="flex flex-col gap-5">
         <GrafikPenjualanProduk />

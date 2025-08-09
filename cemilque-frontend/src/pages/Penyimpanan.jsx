@@ -19,35 +19,37 @@ export default function Penyimpanan () {
   };
 
   return (
-    <div className="flex flex-col h-screen overflow-y-auto p-7 gap-7">
-      <h1 className="font-bold text-4xl">PENYIMPANAN BARANG DAN BAHAN</h1>
+    <>
+      <div className="flex flex-col h-screen overflow-y-auto p-7 gap-7">
+        <h1 className="font-bold text-4xl">PENYIMPANAN BARANG DAN BAHAN</h1>
 
-      {/* Menu Makanan */}
-      <Menu />
+        {/* Menu Makanan */}
+        <Menu />
 
-      <div className="flex gap-10 items-center">
-        <h1 className="font-bold text-4xl">Tabel Barang</h1>
-        <Button
-          color="green"
-          onClick={() => setOpenPopup(true)}
-          className="flex items-center gap-2 px-4 py-2 rounded-lg shadow-md hover:shadow-lg transition"
-        >
-          <PlusIcon className="h-4 w-4" />
-          <span className="font-semibold text-sm">Tambah Barang</span>
-        </Button>
-      </div> 
-      {/* Tabel BHP */}
-      <TabelBHP />
+        <div className="flex gap-10 items-center">
+          <h1 className="font-bold text-4xl">Tabel Barang</h1>
+          <Button
+            color="green"
+            onClick={() => setOpenPopup(true)}
+            className="flex items-center gap-2 px-4 py-2 rounded-lg shadow-md hover:shadow-lg transition"
+          >
+            <PlusIcon className="h-4 w-4" />
+            <span className="font-semibold text-sm">Tambah Barang</span>
+          </Button>
+        </div> 
+        {/* Tabel BHP */}
+        <TabelBHP />
 
-      {/* Tabel Bahan Makanan */}
-      <TabelBahanMakanan />
+        {/* Tabel Bahan Makanan */}
+        <TabelBahanMakanan />
 
-      {/* Popup form */}
-      <FormPopup
-        open={openPopup}
-        handleClose={handleClosePopup}
-        onSuccess={handleSuccess}
-      />
-    </div>
+        {/* Popup form */}
+        <FormPopup
+          open={openPopup}
+          handleClose={handleClosePopup}
+          onSuccess={handleSuccess}
+        />
+      </div>
+    </>
   );
 };
