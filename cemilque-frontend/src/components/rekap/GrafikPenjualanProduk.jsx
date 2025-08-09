@@ -17,7 +17,7 @@ const GrafikPenjualanProduk = () => {
           <YAxis tick={{ fontSize: 12 }} />
           <Tooltip contentStyle={{ backgroundColor: "#f9f9f9", borderRadius: 0 }} />
           <Legend />
-          <Bar dataKey="jumlah" fill="#5CE65C" radius={[0, 0, 0, 0]}></Bar>
+          <Bar dataKey="jumlah" fill="#5CE65C" radius={[10, 10, 0, 0]}></Bar>
         </BarChart>
       </ResponsiveContainer>
     </div>

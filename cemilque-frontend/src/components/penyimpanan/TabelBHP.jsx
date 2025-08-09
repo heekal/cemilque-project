@@ -37,7 +37,7 @@ const TabelBHP = () => {
 
   const fetchData = async () => {
     try {
-      const res = await axios.get("http://localhost:3000/api/storage/get-items");
+      const res = await axios.get("http://localhost:3000/api/storage/get-items/NonMakanan");
       setData(res.data);
     } catch (err) {
       setError("Gagal memuat data");
@@ -84,14 +84,26 @@ const TabelBHP = () => {
     });
   };
 
+  const formatDate = (dateString) => {
+    if (!dateString) return "-";
+    
+    // Parse the date and extract just the date part to avoid timezone issues
+    const date = new Date(dateString);
+    const year = date.getUTCFullYear();
+    const month = String(date.getUTCMonth() + 1).padStart(2, '0');
+    const day = String(date.getUTCDate()).padStart(2, '0');
+    
+    return `${day}/${month}/${year}`;
+  };
+
   const filtered = data.filter((item) => {
     const nama = item.storage_name || "";
     const kategori = item.storage_category || "";
 
     const cocokNama = nama.toLowerCase().includes(search.toLowerCase());
     const cocokKategori =
-      (kategori === "BHP" || kategori === "Non-BHP") &&
-      (kategoriFilter === "Semua" || kategori === kategoriFilter);
+    (kategori.toLowerCase() === "bhp" || kategori.toLowerCase() === "non_bhp") &&
+    (kategoriFilter === "Semua" || kategori.toLowerCase() === kategoriFilter.toLowerCase());
 
       return cocokNama && cocokKategori;
   });
@@ -115,7 +127,7 @@ const TabelBHP = () => {
           <Typography variant="h5" className="font-bold text-gray-900">
             🏥 DATA BHP & NON-BHP
           </Typography>
-
+          
           <div className="flex flex-col md:flex-row gap-2 w-full md:w-2/3">
             <Select
               label="Filter Kategori"
@@ -127,8 +139,8 @@ const TabelBHP = () => {
               className="min-w-[150px]"
             >
               <Option value="Semua">Semua Kategori</Option>
-              <Option value="BHP">BHP</Option>
-              <Option value="Non-BHP">Non-BHP</Option>
+              <Option value="bhp">BHP</Option>
+              <Option value="non_bhp">Non-BHP</Option>
             </Select>
             
             <Input
@@ -176,7 +188,7 @@ const TabelBHP = () => {
                       </td>
                       <td className="px-5 py-3 text-sm border-b border-gray-200">
                         <span className={`px-2 py-1 rounded-full text-xs font-semibold ${
-                          item.storage_category === "BHP" 
+                          item.storage_category === "bhp" 
                             ? 'bg-blue-100 text-blue-800' 
                             : 'bg-orange-100 text-orange-800'
                         }`}>
@@ -189,10 +201,10 @@ const TabelBHP = () => {
                         </span>
                       </td>
                       <td className="px-5 py-3 text-sm font-medium text-gray-900 border-b border-gray-200">
-                        {item.storage_cost}
+                        Rp. {item.storage_cost}
                       </td>
                       <td className="px-5 py-3 text-sm text-gray-900 border-b border-gray-200">
-                        {item.storage_date ?? "-"}
+                        {formatDate(item.storage_date) ?? "-"}
                       </td>
                       <td className="px-5 py-3 text-sm border-b border-gray-200">
                         <div className="flex gap-1">

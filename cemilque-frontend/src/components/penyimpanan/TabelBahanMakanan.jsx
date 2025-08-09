@@ -34,7 +34,7 @@ export default function TabelBahanMakanan() {
 
   const fetchData = async () => {
     try {
-      const res = await axios.get("http://localhost:3000/api/storage/get-ingridients");
+      const res = await axios.get("http://localhost:3000/api/storage/get-items/Makanan");
       setData(res.data);
     } catch (err) {
       setError("Gagal memuat data");
@@ -49,6 +49,18 @@ export default function TabelBahanMakanan() {
   const confirmDelete = (id) => {
     setSelectedIdToDelete(id);
     setDeleteConfirmOpen(true);
+  };
+
+  const formatDate = (dateString) => {
+    if (!dateString) return "-";
+    
+    // Parse the date and extract just the date part to avoid timezone issues
+    const date = new Date(dateString);
+    const year = date.getUTCFullYear();
+    const month = String(date.getUTCMonth() + 1).padStart(2, '0');
+    const day = String(date.getUTCDate()).padStart(2, '0');
+    
+    return `${day}/${month}/${year}`;
   };
 
   const performDelete = async () => {
@@ -86,7 +98,7 @@ export default function TabelBahanMakanan() {
     const kategori = item.storage_category || "";
     return (
       nama.toLowerCase().includes(search.toLowerCase()) &&
-      kategori === "Bahan Makanan"
+      kategori === "bahan_makanan"
     );
   });
 
@@ -164,7 +176,7 @@ export default function TabelBahanMakanan() {
                         {item.storage_cost}
                       </td>
                       <td className="px-5 py-3 text-sm text-gray-900 border-b border-gray-200">
-                        {item.storage_date ?? "-"}
+                        {formatDate(item.storage_date) ?? "-"}
                       </td>
                       <td className="px-5 py-3 text-sm border-b border-gray-200">
                         <div className="flex gap-1">

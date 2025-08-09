@@ -18,7 +18,7 @@ const FormPopup = ({ open, handleClose, onSuccess, editData = null }) => {
     storage_category: "",
     storage_quantity: "",
     storage_date: "",
-    storage_cost: "" // Added price field
+    storage_cost: ""
   });
 
   const [errors, setErrors] = useState({});
@@ -139,9 +139,9 @@ const FormPopup = ({ open, handleClose, onSuccess, editData = null }) => {
             onChange={handleSelectChange}
             error={!!errors.storage_category}
           >
-            <Option value="BHP">BHP</Option>
-            <Option value="Non-BHP">Non-BHP</Option>
-            <Option value="Bahan Makanan">Bahan Makanan</Option>
+            <Option value="bhp">BHP</Option>
+            <Option value="non_bhp">Non-BHP</Option>
+            <Option value="bahan_makanan">Bahan Makanan</Option>
           </Select>
           {errors.storage_category && (
             <Typography color="red" className="text-xs mt-1">
