@@ -35,3 +35,17 @@ export const getTopByCategory = async () => {
 
   return rows;
 };
+
+export const getTodayIncome = async () => {
+   const income = await query(
+      `SELECT 
+         SUM((m.menu_price - m.menu_hpp) * d.quantity) as total_profit
+      FROM 
+         dailysold_tb d
+      JOIN 
+         menu_tb m ON d.menu_id = m.menu_id;
+      `
+   )
+
+   return income.rows;
+}

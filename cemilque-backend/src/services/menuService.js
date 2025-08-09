@@ -83,11 +83,6 @@ export const updateMenu = async (id, { menu_name, menu_price, menu_category, men
 };
 
 export const deleteMenu = async (id) => {
-  // check if exist in order -> finish first
-  // if finish() -> check from dailysold
-  // if exist in dailysold -> create dummy, store pendapatan
-  // delete from dailysold
-  
   const result = await query('DELETE FROM menu_tb WHERE menu_id = $1 RETURNING *', [id]);
   
   return result.rows[0];

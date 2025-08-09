@@ -20,3 +20,13 @@ export const getTopByCategory = async (req, res) => {
         res.status(500).json({ message: 'Internal Server error' });
     }
 }
+
+export const getTodayIncome = async (req, res) => {
+    try {
+        const income = await berandaController.getTodayIncome();
+        res.status(200).json(income);
+    } catch (err) {
+        console.error('Error Fetching Menus', err);
+        res.status(500).json({ message: 'Internal Server error' });
+    }
+}
