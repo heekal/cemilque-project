@@ -31,7 +31,7 @@ const FormPopup = ({ open, handleClose, onSuccess, editData = null }) => {
           storage_category: "",
           storage_quantity: "",
           storage_date: "",
-          storage_cost: "" // Initialize price field
+          storage_cost: ""
         }
       );
       setErrors({});
@@ -73,7 +73,7 @@ const FormPopup = ({ open, handleClose, onSuccess, editData = null }) => {
     if (!formData.storage_category) newErrors.storage_category = "Kategori wajib dipilih";
     if (!formData.storage_quantity) newErrors.storage_quantity = "Jumlah wajib diisi";
     if (!formData.storage_date) newErrors.storage_date = "Tanggal wajib diisi";
-    if (!formData.storage_cost) newErrors.storage_cost = "Harga wajib diisi"; // Added validation for price
+    if (!formData.storage_cost) newErrors.storage_cost = "Harga wajib diisi";
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -84,18 +84,24 @@ const FormPopup = ({ open, handleClose, onSuccess, editData = null }) => {
     try {
       const dataToSend = {
         ...formData,
-        storage_cost: Number(formData.storage_cost) // Ensure price is sent as number
+        storage_cost: Number(formData.storage_cost)
       };
 
-      if (editData) {
-        await axios.put(`http://localhost:3000/api/storage/${editData.storage_id}`, dataToSend);
+      if (editData && editData.storage_id) {
+        // Update existing item - include ID in URL
+        await axios.put(`http://localhost:3000/api/storage/update/${editData.storage_id}`, {
+          data: dataToSend
+        });
       } else {
+        // Create new item
         await axios.post("http://localhost:3000/api/storage", dataToSend);
       }
+      
       if (onSuccess) onSuccess();
       handleClose();
     } catch (error) {
       console.error("Gagal menyimpan data:", error);
+      // You might want to show an error message to the user here
     }
   };
 

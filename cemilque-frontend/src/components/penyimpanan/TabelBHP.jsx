@@ -56,7 +56,7 @@ const TabelBHP = () => {
 
   const performDelete = async () => {
     try {
-      await axios.delete(`http://localhost:3000/api/storage/${selectedIdToDelete}`);
+      await axios.delete(`http://localhost:3000/api/storage/delete/${selectedIdToDelete}`);
       fetchData();
       setSuccessNotification({
         open: true,
