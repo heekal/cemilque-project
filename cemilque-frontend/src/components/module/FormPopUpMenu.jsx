@@ -7,28 +7,40 @@ export default function PopUpMenu({ open, handleClose, data, onSave }) {
   const [file, setFile] = useState(null);
   const [previewUrl, setPreviewUrl] = useState("");
 
-  useEffect(() => {
-    const fetchImage = async () => {
-      if (data) {
-        setForm(data);
-        setFile(null);
-        if (data.menu_url) {
-          try {
-            const res = await axios.get(`http://localhost:3000/api/menus/get-url/${data.menu_id}`);
-            const relativePath = res.data?.menu_url;
-            if (relativePath) {
-              setPreviewUrl(`${relativePath}`);
-            }
-          } catch (err) {
-            console.error("Gagal fetch gambar:", err);
+useEffect(() => {
+  const fetchImage = async () => {
+    if (data) {
+      // MODE EDIT
+      setForm(data);
+      setFile(null);
+      if (data.menu_url) {
+        try {
+          const res = await axios.get(`http://localhost:3000/api/menus/get-url/${data.menu_id}`);
+          const relativePath = res.data?.menu_url;
+          if (relativePath) {
+            setPreviewUrl(`http://localhost:3000${relativePath}`);
           }
-        } else {
-          setPreviewUrl("");
+        } catch (err) {
+          console.error("Gagal fetch gambar:", err);
         }
+      } else {
+        setPreviewUrl("");
       }
-    };
-    fetchImage();
-  }, [data]);
+    } else {
+      // MODE TAMBAH → reset form kosong
+      setForm({
+        menu_name: "",
+        menu_category: "",
+        menu_price: "",
+        menu_hpp: "",
+        menu_url: ""
+      });
+      setFile(null);
+      setPreviewUrl("");
+    }
+  };
+  fetchImage();
+}, [data]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;

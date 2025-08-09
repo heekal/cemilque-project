@@ -2,7 +2,6 @@ import { BarChart, Bar, XAxis, Tooltip, ResponsiveContainer } from "recharts";
 
 export default function MonitorBanyakPenjualan() {
   const barData = [40, 60, 80, 60, 40, 70, 50];
-  const hari = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'];
   const dayLabels = ['S', 'S', 'R', 'K', 'J', 'S', 'M'];
 
   const chartData = dayLabels.map((label, index) => ({

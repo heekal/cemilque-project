@@ -166,9 +166,9 @@ export default function MenuMakanan() {
                     </Typography>
 
                     <img
-                      src={selectedMenu.menu_url}
-                      alt={selectedMenu.menu_name}
-                      className="object-cover rounded w-60"
+                    src={`${BASE_URL}${selectedMenu.menu_url}`}
+                    alt={selectedMenu.menu_name}
+                    className="object-cover rounded w-60"
                     />
                   </div>
                   <div className="flex flex-row mb-2">

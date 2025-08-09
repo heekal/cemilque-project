@@ -3,7 +3,7 @@ import * as orderService from "../services/orderService.js";
 export const createOrderDetails = async(req, res) => {
     try {
         const orderData = req.body;
-
+        console.log('Order Data:', orderData);
         const newOrder = await orderService.createOrderDetails(orderData);
         res.status(200).json(newOrder);
     } catch (err) {
