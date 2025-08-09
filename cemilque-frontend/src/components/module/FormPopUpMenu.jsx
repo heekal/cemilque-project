@@ -51,7 +51,7 @@ export default function PopUpMenu({ open, handleClose, data, onSave }) {
       formData.append("image", file);
 
       try {
-        const res = await axios.post("http://localhost:3000/upload", formData);
+        const res = await axios.post("http://localhost:3000/api/upload", formData);
         const imageUrl = res.data?.imageUrl;
         if (!imageUrl) {
           alert("Upload gagal: Server tidak mengembalikan imageUrl.");
@@ -94,27 +94,27 @@ export default function PopUpMenu({ open, handleClose, data, onSave }) {
         <Input
           label="Nama Menu"
           name="menu_name"
-          value={form.menu_name || ""}
+          value={form.menu_name}
           onChange={handleChange}
         />
         <Input
           label="Kategori"
           name="menu_category"
-          value={form.menu_category || ""}
+          value={form.menu_category}
           onChange={handleChange}
         />
         <Input
           label="Harga"
           name="menu_price"
           type="number"
-          value={form.menu_price || ""}
+          value={form.menu_price}
           onChange={handleChange}
         />
         <Input
           label="HPP"
           name="menu_hpp"
           type="number"
-          value={form.menu_hpp || ""}
+          value={form.menu_hpp}
           onChange={handleChange}
         />
       </DialogBody>

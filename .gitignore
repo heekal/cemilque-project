@@ -12,6 +12,8 @@ lerna-debug.log*
 # Node modules
 cemilque-frontend/node_modules
 cemilque-backend/node_modules
+cemilque-frontend/.env
+cemilque-backend/.env
 
 # Build outputs
 dist

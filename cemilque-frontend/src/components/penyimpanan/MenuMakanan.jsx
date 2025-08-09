@@ -66,10 +66,8 @@ export default function MenuMakanan() {
   };
 
   return (
-    <div className="flex flex-col gap-6">
-      <div className="flex gap-6 items-stretch">
-        {/* Bagian Kiri - Tabel */}
-        <div className="w-1/2 flex flex-col">
+    <div className="flex w-full flex-grow-0 min-h-[475px] max-h-[475px]">
+      <div className="flex flex-col w-full justify-between">
         <div className="mb-4 flex items-center justify-between">
           <Typography variant="h5" className="font-bold text-gray-900">
             🍽️ DAFTAR MENU
@@ -81,126 +79,136 @@ export default function MenuMakanan() {
             + Tambah Menu
           </Button>
         </div>
-          <Card className="p-6 shadow-md rounded-xl bg-white">
-            {/* Input Pencarian */}
-            <div className="w-full mb-4">
-              <Input
-                label="Cari Nama Menu"
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-                crossOrigin=""
-                className="w-full"
-                containerProps={{ className: "min-w-[120px]" }}
-              />
-            </div>
+        <div className="flex gap-5">
+          {/* Bagian Kiri - Tabel */}
+          <div className="flex flex-col w-3/4">
+            <Card className="p-6 shadow-md rounded-xl bg-white">
+              {/* Input Pencarian */}
+              <div className="w-full mb-4">
+                <Input
+                  label="Cari Nama Menu"
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
+                  crossOrigin=""
+                  className="w-full"
+                  containerProps={{ className: "min-w-[120px]" }}
+                />
+              </div>
 
-            {/* Tabel */}
-            <div className="overflow-x-auto rounded-lg border border-gray-200 max-h-[320px] overflow-y-auto">
-              <table className="w-full text-left">
-                <thead>
-                  <tr className="bg-gray-100 text-gray-900 uppercase text-xs">
-                    {["No", "Nama Menu", "Kategori", "Harga", "HPP"].map((head) => (
-                      <th
-                        key={head}
-                        className="px-5 py-3 font-bold tracking-wider border-b border-gray-300"
-                      >
-                        {head}
-                      </th>
-                    ))}
-                  </tr>
-                </thead>
-                <tbody>
-                  {filteredData.length > 0 ? (
-                    filteredData.map((item, idx) => (
-                      <tr
-                        key={item.menu_id}
-                        className={`cursor-pointer transition-colors ${
-                          selectedMenu?.menu_id === item.menu_id
-                            ? "bg-gray-300"
-                            : "bg-white hover:bg-gray-50"
-                        }`}
-                        onClick={() => setSelectedMenu(item)}
-                      >
-                        <td className="px-5 py-3 text-sm font-medium text-gray-900 border-b border-gray-200">
-                          {idx + 1}
-                        </td>
-                        <td className="px-5 py-3 text-sm font-medium text-gray-900 border-b border-gray-200">
-                          {item.menu_name}
-                        </td>
-                        <td className="px-5 py-3 text-sm text-gray-900 border-b border-gray-200">
-                          {item.menu_category}
-                        </td>
-                        <td className="px-5 py-3 text-sm font-medium text-gray-900 border-b border-gray-200">
-                          Rp.{item.menu_price}
-                        </td>
-                        <td className="px-5 py-3 text-sm font-medium text-gray-900 border-b border-gray-200">
-                          Rp.{item.menu_hpp}
+              {/* Tabel */}
+              <div className="overflow-x-auto rounded-lg border border-gray-200 max-h-[320px] overflow-y-auto">
+                <table className="w-full text-left">
+                  <thead>
+                    <tr className="bg-gray-100 text-gray-900 uppercase text-xs">
+                      {["No", "Nama Menu", "Kategori", "Harga", "HPP"].map((head) => (
+                        <th
+                          key={head}
+                          className="px-5 py-3 font-bold tracking-wider border-b border-gray-300"
+                        >
+                          {head}
+                        </th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {filteredData.length > 0 ? (
+                      filteredData.map((item, idx) => (
+                        <tr
+                          key={item.menu_id}
+                          className={`cursor-pointer transition-colors ${
+                            selectedMenu?.menu_id === item.menu_id
+                              ? "bg-gray-300"
+                              : "bg-white hover:bg-gray-50"
+                          }`}
+                          onClick={() => setSelectedMenu(item)}
+                        >
+                          <td className="px-5 py-3 text-sm font-medium text-gray-900 border-b border-gray-200">
+                            {idx + 1}
+                          </td>
+                          <td className="px-5 py-3 text-sm font-medium text-gray-900 border-b border-gray-200">
+                            {item.menu_name}
+                          </td>
+                          <td className="px-5 py-3 text-sm text-gray-900 border-b border-gray-200">
+                            {item.menu_category}
+                          </td>
+                          <td className="px-5 py-3 text-sm font-medium text-gray-900 border-b border-gray-200">
+                            Rp.{item.menu_price}
+                          </td>
+                          <td className="px-5 py-3 text-sm font-medium text-gray-900 border-b border-gray-200">
+                            Rp.{item.menu_hpp}
+                          </td>
+                        </tr>
+                      ))
+                    ) : (
+                      <tr>
+                        <td
+                          colSpan="5"
+                          className="text-center py-6 text-gray-500 border-b border-gray-200"
+                        >
+                          {search ? "Data tidak ditemukan" : "Belum ada data"}
                         </td>
                       </tr>
-                    ))
-                  ) : (
-                    <tr>
-                      <td
-                        colSpan="5"
-                        className="text-center py-6 text-gray-500 border-b border-gray-200"
-                      >
-                        {search ? "Data tidak ditemukan" : "Belum ada data"}
-                      </td>
-                    </tr>
-                  )}
-                </tbody>
-              </table>
-            </div>
-          </Card>
-        </div>
-
-        {/* Bagian Kanan - Detail Menu */}
-        <div className="w-1/2 flex flex-col">
-          <Card className="p-6 shadow-md h-full bg-white rounded-xl flex flex-col justify-between">
-            {selectedMenu ? (
-              <>
-                <Typography variant="h6" className="mb-4 font-semibold text-gray-900">
-                  {selectedMenu.menu_name}
-                </Typography>
-
-                <img
-                  src={selectedMenu.menu_url}
-                  alt={selectedMenu.menu_name}
-                  className="h-52 w-full object-cover rounded mb-4"
-                />
-
-                <Typography className="mb-2 text-sm text-gray-800">
-                  <strong>Kategori:</strong> {selectedMenu.menu_category}
-                </Typography>
-                <Typography className="mb-2 text-sm text-gray-800">
-                  <strong>Harga:</strong> {selectedMenu.menu_price}
-                </Typography>
-                <Typography className="mb-2 text-sm text-gray-800">
-                  <strong>HPP:</strong> {selectedMenu.menu_hpp}
-                </Typography>
-                <div className="flex justify-end gap-2 mt-4">
-                  <Button 
-                    size="sm" 
-                    color="red"
-                    onClick={handleDelete}
-                  >
-                    Hapus
-                  </Button>
-                  <Button 
-                    size="sm" 
-                    color="green"
-                    onClick={handleEdit}
-                  >
-                    Edit
-                  </Button>
-                </div>
-              </>
-            ) : (
-              <div className="text-center text-gray-500">
-                Klik salah satu menu untuk melihat detail
+                    )}
+                  </tbody>
+                </table>
               </div>
-            )}
-          </Card>
+            </Card>
+          </div>
+
+          {/* Bagian Kanan - Detail Menu */}
+          <div className="w-1/4 justify-evenly">
+            <Card className="flex px-4 h-full items-center">
+              {selectedMenu ? (
+                <div className="flex flex-col items-center">
+                  <div className="h-3/4 pt-4 mb-4">
+                    <Typography variant="h6" className="mb-2 font-semibold text-gray-900">
+                      {selectedMenu.menu_name}
+                    </Typography>
+
+                    <img
+                      src={selectedMenu.menu_url}
+                      alt={selectedMenu.menu_name}
+                      className="object-cover rounded w-60"
+                    />
+                  </div>
+                  <div className="flex flex-row mb-2">
+                    <div className="">
+                      <Typography className="mb-2 text-sm text-gray-800">
+                        <strong>Kategori:</strong> {selectedMenu.menu_category}
+                      </Typography>
+                      <Typography className="mb-2 text-sm text-gray-800">
+                        <strong>Harga:</strong> {selectedMenu.menu_price}
+                      </Typography>
+                      <Typography className="mb-2 text-sm text-gray-800">
+                        <strong>HPP:</strong> {selectedMenu.menu_hpp}
+                      </Typography>
+                    </div>
+
+                    <div className="flex justify-end gap-2 items-end">
+                      <Button 
+                        size="sm" 
+                        color="red"
+                        onClick={handleDelete}
+                      >
+                        Hapus
+                      </Button>
+                      <Button 
+                        size="sm" 
+                        color="green"
+                        onClick={handleEdit}
+                      >
+                        Edit
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                <div className="flex items-center align-middle text-center justify-center text-gray-500 h-full">
+                  <h1 className="">Klik salah satu menu untuk melihat detail</h1>
+                </div>
+              )}
+            </Card>
+          </div>
         </div>
       </div>
 

@@ -6,7 +6,7 @@ import Menu from "../components/penyimpanan/MenuMakanan";
 import { Button } from "@material-tailwind/react";
 import { PlusIcon } from "@heroicons/react/24/solid";
 
-const Penyimpanan = () => {
+export default function Penyimpanan () {
   const [openPopup, setOpenPopup] = useState(false);
 
   const handleClosePopup = () => {
@@ -20,11 +20,14 @@ const Penyimpanan = () => {
   };
 
   return (
-    <div className="h-screen overflow-auto p-6 space-y-10">
-      {/* Header dan tombol tambah */}
-      <div className="flex justify-between items-center">
-        <h1 className="text-xl font-semibold">PENYIMPANAN BARANG DAN BAHAN</h1>
+    <div className="flex flex-col h-screen overflow-y-auto p-7 gap-7">
+      <h1 className="font-bold text-4xl pb-5">PENYIMPANAN BARANG DAN BAHAN</h1>
 
+      {/* Menu Makanan */}
+      <Menu />
+
+      <div className="flex justify-between items-center">
+        <h1 className="font-bold text-4xl">Tabel Barang</h1>
         <Button
           color="green"
           onClick={() => setOpenPopup(true)}
@@ -33,11 +36,7 @@ const Penyimpanan = () => {
           <PlusIcon className="h-4 w-4" />
           <span className="font-semibold text-sm">Tambah Barang</span>
         </Button>
-      </div>
-
-      {/* Menu Makanan */}
-      <Menu />
- 
+      </div> 
       {/* Tabel BHP */}
       <TabelBHP />
 
@@ -46,7 +45,6 @@ const Penyimpanan = () => {
 
       {/* Popup form */}
       <FormPopup
-        
         open={openPopup}
         handleClose={handleClosePopup}
         onSuccess={handleSuccess}
@@ -54,5 +52,3 @@ const Penyimpanan = () => {
     </div>
   );
 };
-
-export default Penyimpanan;
