@@ -52,6 +52,11 @@ export const getMenuById = async (id) => {
   return result.rows[0];
 };
 
+export const getMenuByUrl = async (url) => {
+  const result = await query('SELECT menu_url FROM menu_tb WHERE menu_id = $1', [url]);
+  return result.rows[0];
+};
+
 export const createMenu = async ({ menu_name, menu_price, menu_category, menu_url, menu_hpp }) => {
   const result = await query(
     `INSERT INTO menu_tb (menu_name, menu_price, menu_category, menu_url, menu_hpp)

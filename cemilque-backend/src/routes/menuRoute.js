@@ -9,8 +9,9 @@ router.get('/menus/get-all', menuController.getAllMenus);
 // Get all menus grouped by category
 router.get('/menus-category', menuController.getAllMenusByCategory);
 
-// Get menu by ID
+// Get menu by ID/*
 router.get('/menus/get/:id', menuController.getMenuById);
+router.get('/menus/get-url/:url', menuController.getMenuByUrl);
 
 // Create new menu
 router.post('/menus/create', menuController.createMenu);

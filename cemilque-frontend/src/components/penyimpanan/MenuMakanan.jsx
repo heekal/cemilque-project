@@ -1,12 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import PopUpMenu from "../module/FormPopUpMenu";
-import {
-  Card,
-  Typography,
-  Input,
-  Button,
-} from "@material-tailwind/react";
+import { Card, Typography, Input, Button } from "@material-tailwind/react";
 
 export default function MenuMakanan() {
   const [data, setData] = useState([]);
@@ -27,14 +22,6 @@ export default function MenuMakanan() {
     item.menu_name.toLowerCase().includes(search.toLowerCase())
   );
 
-  const formatRupiah = (angka) => {
-    if (!angka) return "-";
-    return new Intl.NumberFormat("id-ID", {
-      style: "currency",
-      currency: "IDR",
-      minimumFractionDigits: 0,
-    }).format(angka);
-  };
 
   const handleEdit = () => {
     setPopupOpen(true);
@@ -76,8 +63,7 @@ export default function MenuMakanan() {
     console.error("Gagal menghapus menu:", error);
     alert("Gagal menghapus menu.");
   }
-};
-
+  };
 
   return (
     <div className="flex flex-col gap-6">
@@ -145,10 +131,10 @@ export default function MenuMakanan() {
                           {item.menu_category}
                         </td>
                         <td className="px-5 py-3 text-sm font-medium text-gray-900 border-b border-gray-200">
-                          {formatRupiah(item.menu_price)}
+                          Rp.{item.menu_price}
                         </td>
                         <td className="px-5 py-3 text-sm font-medium text-gray-900 border-b border-gray-200">
-                          {formatRupiah(item.menu_hpp)}
+                          Rp.{item.menu_hpp}
                         </td>
                       </tr>
                     ))
@@ -176,12 +162,9 @@ export default function MenuMakanan() {
                 <Typography variant="h6" className="mb-4 font-semibold text-gray-900">
                   {selectedMenu.menu_name}
                 </Typography>
+
                 <img
-                  src={
-                    selectedMenu.menu_url?.startsWith("http")
-                      ? selectedMenu.menu_url
-                      : `${BASE_URL}${selectedMenu.menu_url}`
-                  }
+                  src={selectedMenu.menu_url}
                   alt={selectedMenu.menu_name}
                   className="h-52 w-full object-cover rounded mb-4"
                 />
@@ -190,10 +173,10 @@ export default function MenuMakanan() {
                   <strong>Kategori:</strong> {selectedMenu.menu_category}
                 </Typography>
                 <Typography className="mb-2 text-sm text-gray-800">
-                  <strong>Harga:</strong> {formatRupiah(selectedMenu.menu_price)}
+                  <strong>Harga:</strong> {selectedMenu.menu_price}
                 </Typography>
                 <Typography className="mb-2 text-sm text-gray-800">
-                  <strong>HPP:</strong> {formatRupiah(selectedMenu.menu_hpp)}
+                  <strong>HPP:</strong> {selectedMenu.menu_hpp}
                 </Typography>
                 <div className="flex justify-end gap-2 mt-4">
                   <Button 

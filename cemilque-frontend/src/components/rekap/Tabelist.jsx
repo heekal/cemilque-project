@@ -3,15 +3,6 @@ import data from "./dataset";
 import { Card, Typography, IconButton, Tooltip, Input, Select, Option,} from "@material-tailwind/react";
 import { PencilIcon } from "@heroicons/react/24/solid";
 
-// Format Rupiah
-const formatRupiah = (angka) => {
-  return new Intl.NumberFormat("id-ID", {
-    style: "currency",
-    currency: "IDR",
-    minimumFractionDigits: 0,
-  }).format(angka);
-};
-
 // Ambil nama hari dari tanggal
 const getDayName = (tanggalStr) => {
   const [day, month, year] = tanggalStr.split("/");
@@ -138,7 +129,7 @@ const TableList = () => {
                     >
                       <td className="px-4 py-2 text-sm">{Produk}</td>
                       <td className="px-4 py-2 text-sm">{Jumlah}</td>
-                      <td className="px-4 py-2 text-sm">{formatRupiah(Harga)}</td>
+                      <td className="px-4 py-2 text-sm">{Harga}</td>
                       <td className="px-4 py-2 text-sm">{Tanggal}</td>
                       <td className="px-4 py-2 text-sm">
                         <Tooltip content="Edit">

@@ -1,13 +1,5 @@
-import React, { useState, useEffect } from "react";
-import {
-  Dialog,
-  DialogHeader,
-  DialogBody,
-  DialogFooter,
-  Button,
-  Input,
-  Typography,
-} from "@material-tailwind/react";
+import { useState, useEffect } from "react";
+import {Dialog, DialogHeader, DialogBody, DialogFooter, Button, Input, Typography } from "@material-tailwind/react";
 import axios from "axios";
 
 export default function PopUpMenu({ open, handleClose, data, onSave }) {
@@ -16,11 +8,26 @@ export default function PopUpMenu({ open, handleClose, data, onSave }) {
   const [previewUrl, setPreviewUrl] = useState("");
 
   useEffect(() => {
-    if (data) {
-      setForm(data);
-      setFile(null);
-      setPreviewUrl(data.menu_url ? `http://localhost:3000/api/menus/get/${data.menu_url}` : "");
-    }
+    const fetchImage = async () => {
+      if (data) {
+        setForm(data);
+        setFile(null);
+        if (data.menu_url) {
+          try {
+            const res = await axios.get(`http://localhost:3000/api/menus/get-url/${data.menu_id}`);
+            const relativePath = res.data?.menu_url;
+            if (relativePath) {
+              setPreviewUrl(`${relativePath}`);
+            }
+          } catch (err) {
+            console.error("Gagal fetch gambar:", err);
+          }
+        } else {
+          setPreviewUrl("");
+        }
+      }
+    };
+    fetchImage();
   }, [data]);
 
   const handleChange = (e) => {
@@ -45,29 +52,22 @@ export default function PopUpMenu({ open, handleClose, data, onSave }) {
 
       try {
         const res = await axios.post("http://localhost:3000/upload", formData);
-
         const imageUrl = res.data?.imageUrl;
         if (!imageUrl) {
-          console.error("Upload gagal: imageUrl tidak tersedia dalam respons.");
           alert("Upload gagal: Server tidak mengembalikan imageUrl.");
           return;
         }
-
         updatedForm.menu_url = imageUrl;
       } catch (err) {
         console.error("Upload gagal:", err);
         alert("Upload gagal. Silakan coba lagi.");
         return;
       }
+    }
 
-      
-  }
-
-  onSave(updatedForm);
-  handleClose();
-};
-
-
+    onSave(updatedForm);
+    handleClose();
+  };
 
   return (
     <Dialog open={open} handler={handleClose}>
@@ -76,7 +76,7 @@ export default function PopUpMenu({ open, handleClose, data, onSave }) {
         {/* Preview Gambar */}
         {previewUrl && (
           <div className="w-full">
-            <Typography variant="small" color="blue-gray">Preview Gambar:</Typography>
+            <Typography variant="small" color="blue-gray">Preview Gambar {previewUrl}</Typography>
             <img
               src={previewUrl}
               alt="Preview Menu"
@@ -87,7 +87,7 @@ export default function PopUpMenu({ open, handleClose, data, onSave }) {
 
         {/* Upload Gambar */}
         <div>
-          <Typography variant="small" color="blue-gray">Upload Gambar:</Typography>
+          <Typography variant="small" color="blue-gray">Upload Gambar Baru</Typography>
           <input type="file" accept="image/*" onChange={handleFileChange} />
         </div>
 
@@ -118,7 +118,7 @@ export default function PopUpMenu({ open, handleClose, data, onSave }) {
           onChange={handleChange}
         />
       </DialogBody>
-      <DialogFooter>
+      <DialogFooter className="gap-x-2">
         <Button variant="text" color="gray" onClick={handleClose}>Batal</Button>
         <Button color="green" onClick={handleSubmit}>Simpan</Button>
       </DialogFooter>

@@ -30,6 +30,17 @@ export const getMenuById = async (req, res) => {
   }
 };
 
+export const getMenuByUrl = async (req, res) => {
+  try {
+    const { url } = req.params;
+    const menu = await menuService.getMenuByUrl(url);
+    if (!menu) return res.status(404).json({ error: 'Menu tidak ditemukan' });
+    res.json(menu);
+  } catch (err) {
+    res.status(500).json({ error: 'Gagal mengambil menu' });
+  }
+};
+
 export const createMenu = async (req, res) => {
   try {
     const { menu_name, menu_price, menu_category, menu_url, menu_hpp } = req.body;

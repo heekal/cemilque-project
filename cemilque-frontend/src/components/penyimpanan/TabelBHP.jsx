@@ -17,16 +17,6 @@ import {
 import { PencilIcon, TrashIcon, CheckCircleIcon } from "@heroicons/react/24/solid";
 import FormPopup from "../module/FormPopup";
 
-// Format Rupiah function
-const formatRupiah = (angka) => {
-  if (angka === null || angka === undefined || isNaN(angka)) return '-';
-  return new Intl.NumberFormat('id-ID', {
-    style: 'currency',
-    currency: 'IDR',
-    minimumFractionDigits: 0,
-  }).format(angka);
-};
-
 const TabelBHP = () => {
   const [data, setData] = useState([]);
   const [search, setSearch] = useState("");
@@ -199,7 +189,7 @@ const TabelBHP = () => {
                         </span>
                       </td>
                       <td className="px-5 py-3 text-sm font-medium text-gray-900 border-b border-gray-200">
-                        {formatRupiah(item.storage_cost)}
+                        {item.storage_cost}
                       </td>
                       <td className="px-5 py-3 text-sm text-gray-900 border-b border-gray-200">
                         {item.storage_date ?? "-"}
