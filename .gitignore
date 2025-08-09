@@ -1,5 +1,5 @@
 # === Global Ignore ===
-gitignore
+.gitignore
 
 # Log files
 logs

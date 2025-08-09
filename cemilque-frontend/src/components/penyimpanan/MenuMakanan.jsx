@@ -166,7 +166,7 @@ export default function MenuMakanan() {
                     </Typography>
 
                     <img
-                    src={`${BASE_URL}${selectedMenu.menu_url}`}
+                    src={`${selectedMenu.menu_url}`}
                     alt={selectedMenu.menu_name}
                     className="object-cover rounded w-60"
                     />

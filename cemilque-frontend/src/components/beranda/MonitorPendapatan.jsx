@@ -19,7 +19,7 @@ export default function MonitorPendapatan() {
   }, [url]);
 
   return (
-    <div className="p-7 bg-white rounded-lg shadow-lg">
+    <div className="p-5 bg-white rounded-lg shadow-lg">
       <h3 className="text-lg font-semibold text-gray-800">Pendapatan Hari Ini</h3>
       <div className="text-3xl font-bold text-black">Rp. {income},-</div>
       <p className="text-green-600 mt-1">+12% dari kemarin</p>
