@@ -16,17 +16,16 @@ export default function Penyimpanan () {
   const handleSuccess = () => {
     console.log("Data berhasil disimpan!");
     window.location.reload()
-    // Tambahkan logic refresh tabel jika perlu
   };
 
   return (
     <div className="flex flex-col h-screen overflow-y-auto p-7 gap-7">
-      <h1 className="font-bold text-4xl pb-5">PENYIMPANAN BARANG DAN BAHAN</h1>
+      <h1 className="font-bold text-4xl">PENYIMPANAN BARANG DAN BAHAN</h1>
 
       {/* Menu Makanan */}
       <Menu />
 
-      <div className="flex justify-between items-center">
+      <div className="flex gap-10 items-center">
         <h1 className="font-bold text-4xl">Tabel Barang</h1>
         <Button
           color="green"

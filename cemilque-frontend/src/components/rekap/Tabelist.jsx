@@ -64,10 +64,10 @@ const TableList = () => {
   const groupedData = groupByDay(filteredData);
 
   return (
-    <Card className="p-6 w-full overflow-x-auto">
-      <h1 className="font-bold text-3xl text-black pt-1 pl-2 pb-10">List Pesanan Minggu Ini</h1>
+    <Card className="p-6 w-full">
+
       {/* Filter & Search */}
-      <div className="w-full max-w-screen-lg mx-auto mb-8 px-2">
+      <div className="w-full">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <Input
             label="Cari produk..."
@@ -82,7 +82,7 @@ const TableList = () => {
             onChange={(val) => setSelectedDay(val)}
             className="w-full"
           >
-            <Option value="Semua">Semua</Option>
+            <Option value="Semua">{selectedDay}</Option>
             {["Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu", "Minggu"].map(
               (day) => (
                 <Option key={day} value={day}>
@@ -95,9 +95,9 @@ const TableList = () => {
       </div>
 
       {/* Grouped Table Per Hari */}
-      <div className="w-full max-w-screen-lg mx-auto px-2 space-y-10">
+      <div className="w-full">
         {Object.entries(groupedData).map(([dayName, items]) => (
-          <div key={dayName}>
+          <div key={dayName} className="pt-7">
             {/* Header Hari */}
             <Typography
               variant="h6"

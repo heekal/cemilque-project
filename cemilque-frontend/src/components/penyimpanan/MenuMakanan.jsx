@@ -66,9 +66,9 @@ export default function MenuMakanan() {
   };
 
   return (
-    <div className="flex w-full flex-grow-0 min-h-[475px] max-h-[475px]">
+    <div className="flex w-full min-h-[475px] max-h-[475px]">
       <div className="flex flex-col w-full justify-between">
-        <div className="mb-4 flex items-center justify-between">
+        <div className="mb-4 flex items-center gap-10">
           <Typography variant="h5" className="font-bold text-gray-900">
             🍽️ DAFTAR MENU
           </Typography>
@@ -96,8 +96,8 @@ export default function MenuMakanan() {
               </div>
 
               {/* Tabel */}
-              <div className="overflow-x-auto rounded-lg border border-gray-200 max-h-[320px] overflow-y-auto">
-                <table className="w-full text-left">
+              <div className="overflow-x-auto  h-[320px] overflow-y-auto rounded-md">
+                <table className="w-full text-left border border-gray-200 ">
                   <thead>
                     <tr className="bg-gray-100 text-gray-900 uppercase text-xs">
                       {["No", "Nama Menu", "Kategori", "Harga", "HPP"].map((head) => (
@@ -115,7 +115,7 @@ export default function MenuMakanan() {
                       filteredData.map((item, idx) => (
                         <tr
                           key={item.menu_id}
-                          className={`cursor-pointer transition-colors ${
+                          className={`cursor-pointer transition-colors  ${
                             selectedMenu?.menu_id === item.menu_id
                               ? "bg-gray-300"
                               : "bg-white hover:bg-gray-50"
@@ -143,7 +143,7 @@ export default function MenuMakanan() {
                       <tr>
                         <td
                           colSpan="5"
-                          className="text-center py-6 text-gray-500 border-b border-gray-200"
+                          className="text-center py-6 text-gray-500 border-gray-200"
                         >
                           {search ? "Data tidak ditemukan" : "Belum ada data"}
                         </td>
